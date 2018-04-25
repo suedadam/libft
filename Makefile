@@ -1,4 +1,4 @@
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 NAME = libft.a
 CFLAGS += -I libft.h
 LIBFT_SRC = ./ft_strrchr.c \
@@ -66,6 +66,10 @@ LIBFT_SRC = ./ft_strrchr.c \
 ./ft_strccmp.c \
 ./get_next_line.c \
 ./ft_realloc_safe.c \
+./ft_redblack.c \
+./rb_family.c \
+./tree_rotation.c \
+./rb_cases.c \
 
 LIBFT_OBJ = $(subst .c,.o, $(LIBFT_SRC))
 

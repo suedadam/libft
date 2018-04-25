@@ -6,7 +6,7 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:27:49 by asyed             #+#    #+#             */
-/*   Updated: 2018/02/02 16:16:35 by asyed            ###   ########.fr       */
+/*   Updated: 2018/04/24 20:49:00 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 # define LIBFT_H
 # include <string.h>
 # include <unistd.h>
+# include <stdint.h>
 # define TRIMSPACE(c) (c == ' ' || c == '\n' || c == '\t')
 # define FDS 3000
 # define BUFF_SIZE 10
 # define SCHAR sizeof(char)
+# define RESET   "\033[0m"
+# define BLACK   "\033[30m"      /* Black */
+# define RED     "\033[31m"      /* Red */
 
 typedef struct	s_list
 {
@@ -25,6 +29,15 @@ typedef struct	s_list
 	size_t			content_size;
 	struct s_list	*next;
 }				t_list;
+
+typedef struct	s_rbtree
+{
+	struct s_rbtree	*parent;
+	struct s_rbtree	*left;
+	struct s_rbtree	*right;
+	void			*content;
+	uint8_t			color:1;	
+}				t_rbtree;
 
 int				ft_atoi(const char *nptr);
 void			ft_bzero(void *s, size_t n);
@@ -91,6 +104,26 @@ int				ft_toupper(int c);
 void			*ft_realloc(void *src, size_t new_size);
 void			*ft_realloc_safe(void *src, size_t old_size, size_t new_size);
 int				get_next_line(const int fd, char **line);
+
+/*
+** Red-Black tree.
+*/
+
+uint8_t			ft_rbinsert(t_rbtree **tree, void *content, int (*bst)(void *curr, void *newc));
+void			*ft_rbnew(void *content);
+int				default_bst(void *curr, void *newc);
+void			repair_tree(t_rbtree *n);
+void			*parent(t_rbtree *n);
+void			*grandparent(t_rbtree *n);
+void			*sibling(t_rbtree *n);
+void			*uncle(t_rbtree *n);
+void			rotate_left(t_rbtree *n);
+void			rotate_right(t_rbtree *n);
+t_rbtree		*n_sentinal(t_rbtree *parent);
+void			do_case1(t_rbtree *n);
+void			do_case2(t_rbtree *n);
+void			do_case3(t_rbtree *n);
+void			do_case4(t_rbtree *n);
 
 #endif
 
