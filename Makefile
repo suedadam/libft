@@ -1,4 +1,4 @@
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra #-g -fsanitize=address
 NAME = libft.a
 CFLAGS += -I libft.h
 LIBFT_SRC = ./ft_strrchr.c \
@@ -70,13 +70,15 @@ LIBFT_SRC = ./ft_strrchr.c \
 ./rb_family.c \
 ./tree_rotation.c \
 ./rb_cases.c \
+./ft_queue.c \
+./ft_pqueue.c \
 
 LIBFT_OBJ = $(subst .c,.o, $(LIBFT_SRC))
 
 all: $(NAME)
 
 %.o: %.c \
-	gcc $(CFLAGS) -c $? -o $@
+	gcc $(CFLAGS) $(MALLOC_PATH) -c $? -o $@
 
 $(NAME): $(LIBFT_OBJ)
 	/bin/rm -f $(NAME)

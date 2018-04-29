@@ -6,7 +6,7 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:27:49 by asyed             #+#    #+#             */
-/*   Updated: 2018/04/24 20:49:00 by asyed            ###   ########.fr       */
+/*   Updated: 2018/04/27 17:38:19 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,24 @@
 # define RESET   "\033[0m"
 # define BLACK   "\033[30m"      /* Black */
 # define RED     "\033[31m"      /* Red */
+
+typedef struct	s_node
+{
+	void			*content;
+	struct s_node	*next;
+	struct s_node	*previous;
+}				t_node;
+
+typedef struct	s_queue
+{
+	t_node			*first;
+	t_node			*last;
+}				t_queue;
+
+typedef struct	s_pqueue
+{
+	t_node			*first;
+}				t_pqueue;
 
 typedef struct	s_list
 {
@@ -124,6 +142,27 @@ void			do_case1(t_rbtree *n);
 void			do_case2(t_rbtree *n);
 void			do_case3(t_rbtree *n);
 void			do_case4(t_rbtree *n);
+
+
+/*
+** Queue
+*/
+
+int				isempty_queue(t_queue *queue);
+void			*peek_queue(t_queue *queue);
+void			*ft_dequeue(t_queue *queue);
+int				ft_enqueue(t_queue *queue, void *content, size_t c_size);
+t_queue			*new_queue(void);
+
+/*
+** Priority Queue
+*/
+void			ft_enpqueue(t_pqueue *queue, void *content, size_t c_size,
+					int (*comparer)(void *, void *));
+void			*peek_pqueue(t_pqueue *queue);
+void			*ft_depqueue(t_pqueue *queue);
+t_pqueue		*init_pqueue(void);
+void			del_pqueue(t_pqueue *queue, void (*deconstruct)(void *ptr));
 
 #endif
 
