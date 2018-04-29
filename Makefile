@@ -72,6 +72,9 @@ LIBFT_SRC = ./ft_strrchr.c \
 ./rb_cases.c \
 ./ft_queue.c \
 ./ft_pqueue.c \
+./ft_uputnbr.c \
+./ft_uputnbr_fd.c \
+./ft_wcslen.c \
 
 LIBFT_OBJ = $(subst .c,.o, $(LIBFT_SRC))
 

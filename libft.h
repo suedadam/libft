@@ -6,7 +6,7 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:27:49 by asyed             #+#    #+#             */
-/*   Updated: 2018/04/27 17:38:19 by asyed            ###   ########.fr       */
+/*   Updated: 2018/04/28 20:07:33 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <string.h>
 # include <unistd.h>
 # include <stdint.h>
+# include <stdlib.h>
 # define TRIMSPACE(c) (c == ' ' || c == '\n' || c == '\t')
 # define FDS 3000
 # define BUFF_SIZE 10
@@ -121,6 +122,9 @@ int				ft_tolower(int c);
 int				ft_toupper(int c);
 void			*ft_realloc(void *src, size_t new_size);
 void			*ft_realloc_safe(void *src, size_t old_size, size_t new_size);
+void			ft_uputnbr_fd(__uint64_t n, int fd);
+void			ft_uputnbr(__uint64_t n);
+size_t			ft_wcslen(const wchar_t *s);
 int				get_next_line(const int fd, char **line);
 
 /*
